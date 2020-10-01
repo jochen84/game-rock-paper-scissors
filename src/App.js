@@ -8,12 +8,11 @@ function App() {
     roundsPlayed: 0,
     totalRounds: 3
   });
-  
+
   const [score, setScore] = useState({
     playerScore: 0,
     tie: 0,
-    computerScore: 0,
-    rounds: 0
+    computerScore: 0
   });
 
   const [playerHand, setPlayerHand] = useState({
