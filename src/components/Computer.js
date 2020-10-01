@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Computer = ({hands}) => {
+const Computer = ({handMoves}) => {
 
   //AI for choosing a random hand
   let random = Math.floor(Math.random() * 3)
@@ -8,11 +8,14 @@ const Computer = ({hands}) => {
 
   return(
     <div>
-      <div>
+      <div className="avatar">
         <img src="/media/computer.png" width="110px" alt="comp"></img>
       </div>
-      <div className="the-hand">
-      <img className="hand-image" src={hands[random]} width="350"></img>
+      <div className="choosen-hand-move">
+        <img className="hand-image" src={handMoves[random]} width="350"></img>
+      </div>
+      <div className = "computer-taunt">
+        <h1>Good luck</h1>
       </div>
     </div>
   )

@@ -1,10 +1,11 @@
 import React from 'react';
 import Player from './Player';
 import Computer from './Computer';
+import Scoreboard from './Scoreboard';
 
-const Gameboard = ({rounds, setRounds, score, hands}) => {
+const Gameboard = ({rounds, score, handMoves}) => {
   return(
-    <div>
+    <div className="gameboard-header">
       <h1>Welcome to Rock Scissors Paper</h1>
       <h3>How many rounds would you like to play?</h3>
       <div className="rounds-div">
@@ -13,18 +14,14 @@ const Gameboard = ({rounds, setRounds, score, hands}) => {
         ))}
       </div>
       <hr></hr>
-      <h1> &#129151; Winner &#129150; </h1>
-      <div className="players">
-        <Player hands={hands}/>
-        <div className="points">
-          <h1>{score.playerScore}</h1>
-          <p>Player</p>
-          <h1>{score.tie}</h1>
-          <p>Tie</p>
-          <h1>{score.computerScore}</h1>
-          <p>Computer</p>
-        </div>
-        <Computer hands={hands}/>
+      <div className="player-section-header">
+        <h1> &#129151; Winner &#129150; </h1>
+        <h1>Rounds x/{rounds[2]}</h1>
+      </div>
+      <div className="players-section">
+        <Player handMoves={handMoves}/>
+        <Scoreboard score={score} />
+        <Computer handMoves={handMoves}/>
       </div>
     </div>
   )
