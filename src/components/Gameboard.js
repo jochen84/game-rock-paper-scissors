@@ -3,7 +3,7 @@ import Player from './Player';
 import Computer from './Computer';
 import Scoreboard from './Scoreboard';
 
-const Gameboard = ({rounds, score, handMoves}) => {
+const Gameboard = ({rounds, score, handMoves, playerHand, setPlayerHand, setComputerHand}) => {
   return(
     <div className="gameboard-header">
       <h1>Welcome to Rock Scissors Paper</h1>
@@ -19,9 +19,9 @@ const Gameboard = ({rounds, score, handMoves}) => {
         <h1>Rounds x/{rounds[2]}</h1>
       </div>
       <div className="players-section">
-        <Player handMoves={handMoves}/>
+        <Player handMoves={handMoves} playerHand={playerHand} setPlayerHand={setPlayerHand}/>
         <Scoreboard score={score} />
-        <Computer handMoves={handMoves}/>
+        <Computer handMoves={handMoves} setComputerHand={setComputerHand}/>
       </div>
     </div>
   )

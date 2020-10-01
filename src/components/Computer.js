@@ -12,7 +12,7 @@ const Computer = ({handMoves}) => {
         <img src="/media/computer.png" width="110px" alt="comp"></img>
       </div>
       <div className="choosen-hand-move">
-        <img className="hand-image" src={handMoves[random]} width="350"></img>
+        <img className="hand-image" src={`/media/${handMoves[random]}.png`} width="350"></img>
       </div>
       <div className = "computer-taunt">
         <h1>Good luck</h1>
