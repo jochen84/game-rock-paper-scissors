@@ -27,6 +27,7 @@ const Player = ({handMoves, playerHand, setPlayerHand}) => {
       <div className="choosen-hand-move">
         <img className="hand-image" src={`/media/${handMoves[1]}.png`} width="350"></img>
       </div>
+      {/*Ta fram DIV när man tryckt på Start*/}
       <div className = "player-choices">
         <div className = "player-choice">
           <img onClick={chooseHand} src="/media/rock.png" alt="rock" width="75" height="75"></img>

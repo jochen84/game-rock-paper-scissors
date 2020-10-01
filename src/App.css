@@ -5,6 +5,10 @@
 .gameboard-header{}
 .players-section-header{}
 
+.start-game{
+  padding: 25px;
+}
+
 .players-section{
   display: flex;
   justify-content: space-around;
@@ -55,4 +59,7 @@
   justify-content: space-around;
 }
 
+.hidden{
+  display: none;
+}
 
