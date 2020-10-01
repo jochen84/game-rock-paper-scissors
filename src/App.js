@@ -1,24 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+import Gameboard from './components/Gameboard';
 
 function App() {
+  const [rounds, setRounds] = useState([1,3,5,10])
+  const [score, setScore] = useState({playerScore: 0, tie: 0, computerScore: 0})
+  const [hands] = useState(['/media/rock.png', '/media/paper.png', '/media/scissors.png'])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Gameboard rounds={rounds} setRounds={setRounds} score={score} hands={hands}/>
     </div>
   );
 }
