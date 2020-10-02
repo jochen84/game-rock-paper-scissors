@@ -6,7 +6,7 @@ function App() {
   const [handMoves, setHandMoves] = useState(['rock', 'paper', 'scissors'])
   const [rounds, setRounds] = useState({ 
     roundsPlayed: 0,
-    totalRounds: 3
+    totalRounds: 0
   });
 
   const [score, setScore] = useState({
