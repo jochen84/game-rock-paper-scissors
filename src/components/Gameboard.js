@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Player from './Player';
 import Computer from './Computer';
 import Scoreboard from './Scoreboard';
 
-const Gameboard = ({rounds, setRounds, score, handMoves, playerHand, setPlayerHand, setComputerHand}) => {
+const Gameboard = ({rounds, setRounds, score, handMove, setHandMove, playerHand, setPlayerHand, setComputerHand}) => {
 
   const [hidden, setHidden] = useState(false);
   
@@ -11,6 +11,18 @@ const Gameboard = ({rounds, setRounds, score, handMoves, playerHand, setPlayerHa
     setRounds({...rounds, totalRounds: e.target.innerText});
   }
   //Dölj spelarens handval under spelaren innan man valt hur många rundor man vill spela!
+
+  //***Varje gång spelaren väljer hand får datorn en random hand - Thats AI!***
+  useEffect(() => {
+    computerAIhand();
+  }, [handMove.player]);
+  
+  const computerAIhand = () => {
+    let random = Math.floor(Math.random() * 3);
+    let moves = ['rock', 'paper', 'scissors'];
+    setHandMove({...handMove, computer: moves[random]})
+  }
+  //***Varje gång spelaren väljer hand får datorn en random hand - Thats AI!***
 
   return(
     <div className="gameboard-header">
@@ -35,9 +47,9 @@ const Gameboard = ({rounds, setRounds, score, handMoves, playerHand, setPlayerHa
         <h1>Rounds {rounds.roundsPlayed}/{rounds.totalRounds}</h1>
       </div>
       <div className="players-section">
-        <Player handMoves={handMoves} playerHand={playerHand} setPlayerHand={setPlayerHand}/>
+        <Player handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand}/>
         <Scoreboard score={score} />
-        <Computer handMoves={handMoves} setComputerHand={setComputerHand}/>
+        <Computer handMove={handMove} setComputerHand={setComputerHand}/>
       </div>
     </div>
   )

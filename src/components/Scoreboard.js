@@ -10,6 +10,8 @@ const Scoreboard = ({score}) => {
       <p>Tie</p>
       <h1>{score.computerScore}</h1>
       <p>Computer</p>
+      <hr></hr>
+      <h2>Something beats something</h2>
     </div>
   )
 }

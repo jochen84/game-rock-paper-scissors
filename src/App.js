@@ -3,12 +3,14 @@ import './App.css';
 import Gameboard from './components/Gameboard';
 
 function App() {
-  const [handMoves, setHandMoves] = useState(['rock', 'paper', 'scissors'])
+  const [handMove, setHandMove] = useState({
+    player: '',
+    computer: ''
+  });
   const [rounds, setRounds] = useState({ 
     roundsPlayed: 0,
     totalRounds: 0
   });
-
   const [score, setScore] = useState({
     playerScore: 0,
     tie: 0,
@@ -33,7 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <Gameboard rounds={rounds} setRounds={setRounds} score={score} handMoves={handMoves} playerHand={playerHand} computerHand={computerHand} setPlayerHand={setPlayerHand}/>
+      <Gameboard rounds={rounds} setRounds={setRounds} score={score} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} computerHand={computerHand} setPlayerHand={setPlayerHand}/>
     </div>
   );
 }
