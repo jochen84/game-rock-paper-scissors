@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <Gameboard rounds={rounds} setRounds={setRounds} score={score} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} computerHand={computerHand} setPlayerHand={setPlayerHand}/>
+      <Gameboard rounds={rounds} setRounds={setRounds} score={score} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} computerHand={computerHand} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand}/>
     </div>
   );
 }

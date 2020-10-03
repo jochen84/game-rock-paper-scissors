@@ -1,24 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const Player = ({handMove, setHandMove, playerHand, setPlayerHand}) => {
+const Player = ({rounds, setRounds, handMove, setHandMove, playerHand, setPlayerHand}) => {
 
+  const [hidden, setHidden] = useState(false);
   //Klicka hand sätter "den" till true
-  const chooseRock = (e) => {
-      setPlayerHand({...playerHand, rock: true});
-      setHandMove({...handMove, player: 'rock'});
+  const chooseRock = () => {
+    hideChoices();
+    setRounds({...rounds, roundsPlayed: rounds.roundsPlayed+1})
+    setPlayerHand({...playerHand, rock: true});
+    setHandMove({...handMove, player: 'rock'});
   }
-  const choosePaper = (e) => {
+  const choosePaper = () => {
+    hideChoices();
+    setRounds({...rounds, roundsPlayed: rounds.roundsPlayed+1})
     setPlayerHand({...playerHand, paper: true});
     setHandMove({...handMove, player: 'paper'});
   }
-  const chooseScissor = (e) => {
+  const chooseScissor = () => {
+    hideChoices();
+    setRounds({...rounds, roundsPlayed: rounds.roundsPlayed+1})
     setPlayerHand({...playerHand, scissor: true});
     setHandMove({...handMove, player: 'scissors'});
   }
 
-  //Klicka hand väljer handen, kör datorns val, jämför och sätter sedan poäng. Kollar även om antal ronder är klart.
+  //Klicka hand väljer handen, visar datorns val, jämför och sätter sedan poäng. Kollar även om antal ronder är klart.
 
-  
+  const hideChoices = () => {
+   if(rounds.roundsPlayed == rounds.totalRounds-1){
+      setHidden(true);
+    }
+  }
 
   return(
     <div>
@@ -29,7 +40,7 @@ const Player = ({handMove, setHandMove, playerHand, setPlayerHand}) => {
         <img className="hand-image" src={`/media/${handMove.player}.png`} width="350"></img>
       </div>
       {/*Ta fram DIV när man tryckt på Start*/}
-      <div className = "player-choices">
+      <div className ={`player-choices ${hidden ? "hidden" : ""}`}>
         <div className = "player-choice">
           <img onClick={chooseRock} src="/media/rock.png" alt="rock" width="75" height="75"></img>
         </div>
