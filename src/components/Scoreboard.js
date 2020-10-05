@@ -1,6 +1,18 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 const Scoreboard = ({score}) => {
+
+  const [roundWinner, setRoundWinner] = useState('')
+
+  useEffect(() => {
+    setRoundWinner('<--- Player got this');
+  }, [score.playerScore]);
+  useEffect(() => {
+    setRoundWinner('Computer got this --->');
+  }, [score.computerScore]);
+  useEffect(() => {
+    setRoundWinner('>-- TIE ---<');
+  }, [score.tie]);
 
   return(
     <div className="scoreboard">
@@ -11,7 +23,7 @@ const Scoreboard = ({score}) => {
       <h1>{score.computerScore}</h1>
       <p>Computer</p>
       <hr></hr>
-      <h2>Something beats something</h2>
+  <h2>{roundWinner}</h2>
     </div>
   )
 }

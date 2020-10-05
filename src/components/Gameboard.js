@@ -3,7 +3,7 @@ import Player from './Player';
 import Computer from './Computer';
 import Scoreboard from './Scoreboard';
 
-const Gameboard = ({winner, setWinner, rounds, setRounds, score, handMove, setHandMove, playerHand, setPlayerHand, computerHand, setComputerHand}) => {
+const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handMove, setHandMove, playerHand, setPlayerHand, computerHand, setComputerHand}) => {
 
   //Används för att dölja <element>
   const [hidden, setHidden] = useState(false);
@@ -36,16 +36,32 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, handMove, setHa
   //Jämför händerna, måste ändras för att få in poängsättning i samma...(Tie funkar men inte de andra)
   const winnerMoves = () => {
     if(JSON.stringify(playerHand) === JSON.stringify(computerHand)) {
+      setScore({...score, tie: score.tie + 1})
       //alert('Hello, we are the same! No one won');
     }
-    else if((playerHand.rock && computerHand.scissor) || (computerHand.rock && playerHand.scissor)){
-      alert('Rock beats scissor')
+    else if(playerHand.rock && computerHand.scissor){
+      setScore({...score, playerScore: score.playerScore + 1})
+      //alert('Player - Rock beats scissor')
     }
-    else if((playerHand.scissor && computerHand.paper) || (computerHand.scissor && playerHand.paper)){
-      alert('Scissor beats paper')
+    else if(computerHand.rock && playerHand.scissor){
+      setScore({...score, computerScore: score.computerScore + 1})
+      //alert('Computer - Rock beats scissor')
     }
-    else if((playerHand.paper && computerHand.rock) || (computerHand.paper && playerHand.rock)){
-      alert('Paper beats rock')
+    else if(playerHand.scissor && computerHand.paper){
+      setScore({...score, playerScore: score.playerScore + 1})
+      //alert('Player - Scissor beats paper')
+    }
+    else if(computerHand.scissor && playerHand.paper){
+      setScore({...score, computerScore: score.computerScore + 1})
+      //alert('Computer - Scissor beats paper')
+    }
+    else if(playerHand.paper && computerHand.rock){
+      setScore({...score, playerScore: score.playerScore + 1})
+      //alert('Player - Paper beats rock')
+    }
+    else if(computerHand.paper && playerHand.rock){
+      setScore({...score, computerScore: score.computerScore + 1})
+      //alert('Computer - Paper beats rock')
     }
     //Tömmer spelarhanden för en ny omgång!
     setPlayerHand({rock: false, paper: false, scissor: false});
@@ -63,7 +79,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, handMove, setHa
       else if(score.computerScore > score.playerScore){
         setWinner(computerWin)
       }else{
-        setWinner(tie)
+        setWinner('Test')
       }
     }
   }

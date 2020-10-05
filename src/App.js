@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <Gameboard winner={winner} setWinner={setWinner} rounds={rounds} setRounds={setRounds} score={score} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} computerHand={computerHand} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand}/>
+      <Gameboard winner={winner} setWinner={setWinner} rounds={rounds} setRounds={setRounds} score={score} setScore={setScore} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} computerHand={computerHand} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand}/>
     </div>
   );
 }
