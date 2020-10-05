@@ -21,7 +21,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     winnerMoves();
     //Sätter vinnar namnet i <h1>-taggen - Får det inte till att funka
     whosTheWinner();
-  }, [handMove.player]);
+  }, [handMove.player, rounds.roundsPlayed]);
   
   const computerAIhand = () => {
     let random = Math.floor(Math.random() * 3);
@@ -64,7 +64,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       //alert('Computer - Paper beats rock')
     }
     //Tömmer spelarhanden för en ny omgång!
-    setPlayerHand({rock: false, paper: false, scissor: false});
+    //setPlayerHand({rock: false, paper: false, scissor: false});
   }
   
   //Fungerar inte, den ändrar inte STATE, sätter bara 1 gång vid uppstart, körs i useEffect[handmove.player]
@@ -83,7 +83,6 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       }
     }
   }
-
 
   return(
     <div className="gameboard-header">
@@ -105,7 +104,6 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       {/*Ta fram DIV när man tryckt på start */}
       <div className={`player-section-header ${hidden ? "" : "hidden"}`}>
         <h1>{winner}</h1>
-        <h1> &#129151;&#129150; </h1>
         <h1>Rounds {rounds.roundsPlayed}/{rounds.totalRounds}</h1>
       </div>
       <div className="players-section">

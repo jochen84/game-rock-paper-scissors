@@ -7,19 +7,19 @@ const Player = ({hidden, rounds, setRounds, handMove, setHandMove, playerHand, s
   const chooseRock = () => {
     //hideChoices();
     setRounds({...rounds, roundsPlayed: rounds.roundsPlayed+1})
-    setPlayerHand({...playerHand, rock: true});
+    setPlayerHand({rock: true, paper: false, scissor: false});
     setHandMove({...handMove, player: 'rock'});
   }
   const choosePaper = () => {
     //hideChoices();
     setRounds({...rounds, roundsPlayed: rounds.roundsPlayed+1})
-    setPlayerHand({...playerHand, paper: true});
+    setPlayerHand({rock: false, paper: true, scissor: false});
     setHandMove({...handMove, player: 'paper'});
   }
   const chooseScissor = () => {
     //hideChoices();
     setRounds({...rounds, roundsPlayed: rounds.roundsPlayed+1})
-    setPlayerHand({...playerHand, scissor: true});
+    setPlayerHand({rock: false, paper: false, scissor: true});
     setHandMove({...handMove, player: 'scissors'});
   }
 
