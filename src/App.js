@@ -15,7 +15,7 @@ function App() {
   //Antal rundor, sätts med knapp innan spelet börjar, jämförs för att avsluta spelet
   const [rounds, setRounds] = useState({ 
     roundsPlayed: 0,
-    totalRounds: 0
+    totalRounds: null
   });
 
   //Sätter poäng efter varje runda. Används för att se vinnare vid avslutat spel

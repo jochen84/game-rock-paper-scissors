@@ -7,6 +7,9 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
 
   //Används för att dölja <element>
   const [hidden, setHidden] = useState(false);
+
+  //Sätter meddelanden för vem vann och hur
+  const [roundWinner, setRoundWinner] = useState('');
   
   //Sätter antal rundor man vill spela till numret som finns i texten man klickar
   const setRoundsToPlay = (e) => {
@@ -23,6 +26,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     whosTheWinner();
   }, [handMove.player, rounds.roundsPlayed]);
   
+  
   const computerAIhand = () => {
     let random = Math.floor(Math.random() * 3);
     let moves = ['rock', 'paper', 'scissors'];
@@ -36,32 +40,31 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
   //Jämför händerna, måste ändras för att få in poängsättning i samma...(Tie funkar men inte de andra)
   const winnerMoves = () => {
     if(JSON.stringify(playerHand) === JSON.stringify(computerHand)) {
-      setScore({...score, tie: score.tie + 1})
-      //alert('Hello, we are the same! No one won');
+      setScore({...score, tie: score.tie + 1});
+      setRoundWinner('TIE');
     }
     else if(playerHand.rock && computerHand.scissor){
-      setScore({...score, playerScore: score.playerScore + 1})
-      //alert('Player - Rock beats scissor')
+      setScore({...score, playerScore: score.playerScore + 1});
     }
     else if(computerHand.rock && playerHand.scissor){
-      setScore({...score, computerScore: score.computerScore + 1})
-      //alert('Computer - Rock beats scissor')
+      setScore({...score, computerScore: score.computerScore + 1});
+      setRoundWinner('Rock beats scissor - Computer-->');
     }
     else if(playerHand.scissor && computerHand.paper){
-      setScore({...score, playerScore: score.playerScore + 1})
-      //alert('Player - Scissor beats paper')
+      setScore({...score, playerScore: score.playerScore + 1});
+      setRoundWinner('<--Player - Scissor beats paper');
     }
     else if(computerHand.scissor && playerHand.paper){
-      setScore({...score, computerScore: score.computerScore + 1})
-      //alert('Computer - Scissor beats paper')
+      setScore({...score, computerScore: score.computerScore + 1});
+      setRoundWinner('Scissor beats paper - Computer-->');
     }
     else if(playerHand.paper && computerHand.rock){
-      setScore({...score, playerScore: score.playerScore + 1})
-      //alert('Player - Paper beats rock')
+      setScore({...score, playerScore: score.playerScore + 1});
+      setRoundWinner('<--Player - Paper beats rock');
     }
     else if(computerHand.paper && playerHand.rock){
-      setScore({...score, computerScore: score.computerScore + 1})
-      //alert('Computer - Paper beats rock')
+      setScore({...score, computerScore: score.computerScore + 1});
+      setRoundWinner('Paper beats rock - Computer-->');
     }
     //Tömmer spelarhanden för en ny omgång!
     //setPlayerHand({rock: false, paper: false, scissor: false});
@@ -108,7 +111,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       </div>
       <div className="players-section">
         <Player hidden={hidden} rounds={rounds} setRounds={setRounds} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand}/>
-        <Scoreboard score={score} />
+        <Scoreboard score={score} roundWinner={roundWinner} />
         <Computer handMove={handMove}/>
       </div>
     </div>
