@@ -39,13 +39,20 @@ function App() {
     scissor: false
   });
 
+  //För beräkning av datorns drag
+  const [rating, setRating] = useState({
+    rockRating: 0,
+    paperRating: 0,
+    scissorsRating: 0
+  });
+
   useEffect(() => {
     //Vad körs igång när spelet startas!
   })
 
   return (
     <div className="App">
-      <Gameboard winner={winner} setWinner={setWinner} rounds={rounds} setRounds={setRounds} score={score} setScore={setScore} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} computerHand={computerHand} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand}/>
+      <Gameboard winner={winner} setWinner={setWinner} rounds={rounds} setRounds={setRounds} score={score} setScore={setScore} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} computerHand={computerHand} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating}/>
     </div>
   );
 }

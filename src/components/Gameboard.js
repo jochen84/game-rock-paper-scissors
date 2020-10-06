@@ -3,10 +3,10 @@ import Player from './Player';
 import Computer from './Computer';
 import Scoreboard from './Scoreboard';
 
-const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handMove, setHandMove, playerHand, setPlayerHand, computerHand, setComputerHand}) => {
-
+const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handMove, setHandMove, playerHand, setPlayerHand, computerHand, setComputerHand, rating, setRating}) => {
   //Används för att dölja <element>
   const [hidden, setHidden] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   
   //Sätter antal rundor man vill spela till numret som finns i texten man klickar
   const setRoundsToPlay = (e) => {
@@ -23,14 +23,67 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     whosTheWinner();
   }, [handMove.player, rounds.roundsPlayed]);
   
+  useEffect(() => {
+
+    //computerAIhand();
+    setIsLoaded(true);
+  }, []);
+
+
+
+
   const computerAIhand = () => {
+    /*
     let random = Math.floor(Math.random() * 3);
     let moves = ['rock', 'paper', 'scissors'];
     if(random == 0){setComputerHand({rock: true, paper: false, scissor: false});}
     if(random == 1){setComputerHand({rock: false, paper: true, scissor: false});}
     if(random == 2){setComputerHand({rock: false, paper: false, scissor: true});}
     setHandMove({...handMove, computer: moves[random]});
+    */
+   //let moves = ['rock', 'paper', 'scissors'];
+   if (isLoaded) {
+
+    //rockRating *= 0.95;
+    setRating({...rating,
+      rockRating: rating.rockRating * 0.95,
+      paperRating: rating.paperRating * 0.95,
+      scissorsRating: rating.scissorsRating * 0.95
+    });
+    //console.log("Ratings: ", rockRating + ", ", paperRating + ", ", scissorsRating);
+
+    let randomNumber = Math.random() * (Math.exp(rating.rockRating) + 
+    Math.exp(rating.scissorsRating) + Math.exp(rating.paperRating));
+
+
+    if (randomNumber < Math.exp(rating.rockRating)) {
+      setComputerHand({rock: true, paper: false, scissor: false});
+      //computerHand = "R";
+      console.log("math.exp(rock): ", Math.exp(rating.rockRating));
+      console.log("com: R");
+      setHandMove({...handMove, computer: 'rock'});
+      return;
   }
+  else if (randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating)) {
+      //setComputerMove("P");
+      //computerHand = "P";
+      setComputerHand({rock: false, paper: true, scissor: false});
+      console.log("paper thing: ", Math.exp(rating.rockRating) + Math.exp(rating.paperRating));
+      console.log("com: P");
+      setHandMove({...handMove, computer: 'paper'});
+      return;
+  } 
+  else if (!(randomNumber < Math.exp(rating.rockRating)) &&
+          !(randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating))){
+      //setComputerMove("S"); 
+      //computerHand = "S";
+      setComputerHand({rock: false, paper: false, scissor: true});
+      setHandMove({...handMove, computer: 'scissors'});
+      console.log("com: S");
+  } 
+  } 
+}
+
   //***Varje gång spelaren väljer hand får datorn en random hand - Thats AI!***
 
   //Jämför händerna, måste ändras för att få in poängsättning i samma...(Tie funkar men inte de andra)
@@ -77,9 +130,9 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
         setWinner(playerWin);
       }
       else if(score.computerScore > score.playerScore){
-        setWinner(computerWin)
+        setWinner(computerWin);
       }else{
-        setWinner('Test')
+        setWinner(tie);
       }
     }
   }
