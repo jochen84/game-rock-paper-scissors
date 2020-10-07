@@ -46,10 +46,30 @@ function App() {
         scissorsRating: 0
     });
 
+    const [winningTaunt, setWinningTaunt] = useState([
+        "Ha ha!",
+        "You'll never beat me!",
+        "Nice try!"
+    ]);
+
+    const [losingTaunt, setlosingTaunt] = useState([
+        "Pure luck!",
+        "You're cheating!",
+        "Nooo!"
+    ]);
+
     console.log("DENNA LIGGER I BOTTEN PÅ ***APP.JS***")
     return (
         <div className="App">
-            <Gameboard winner={winner} setWinner={setWinner} rounds={rounds} setRounds={setRounds} score={score} setScore={setScore} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} computerHand={computerHand} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating} />
+            <Gameboard winner={winner} setWinner={setWinner} 
+            rounds={rounds} setRounds={setRounds} 
+            score={score} setScore={setScore}
+            handMove={handMove} setHandMove={setHandMove} 
+            playerHand={playerHand} setPlayerHand={setPlayerHand}
+            computerHand={computerHand} setComputerHand={setComputerHand} 
+            rating={rating} setRating={setRating}
+            winningTaunt={winningTaunt} setWinningTaunt={setWinningTaunt}
+            losingTaunt={losingTaunt} setlosingTaunt={setlosingTaunt} />
         </div>
     );
 }
