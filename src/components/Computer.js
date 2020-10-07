@@ -2,9 +2,6 @@ import React from 'react';
 
 const Computer = ({handMove}) => {
 
-  //AI for choosing a random hand
-  
-  //AI for choosing a random hand
 
   return(
     <div>

@@ -23,10 +23,6 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       winnerMoves();
       whosTheWinner();
     }
-    //Ge datorn ett "drag"
-    //Kör igång en if-sats för att kolla dragen
-    //winnerMoves();
-    //Sätter vinnar namnet i <h1>-taggen - Får det inte till att funka
   }, [handMove.player, rounds.roundsPlayed]);
   
   useEffect(() => {
@@ -50,7 +46,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
    //let moves = ['rock', 'paper', 'scissors'];
    if (isLoaded) {
 
-    //rockRating *= 0.95;
+    // Rating *= 0.95;
     setRating({...rating,
       rockRating: rating.rockRating * 0.95,
       paperRating: rating.paperRating * 0.95,
@@ -64,15 +60,12 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
 
     if (randomNumber < Math.exp(rating.rockRating)) {
       setComputerHand({rock: true, paper: false, scissor: false});
-      //computerHand = "R";
       console.log("math.exp(rock): ", Math.exp(rating.rockRating));
       console.log("computer ROCK");
       setHandMove({...handMove, computer: 'rock'});
       return;
   }
   else if (randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating)) {
-      //setComputerMove("P");
-      //computerHand = "P";
       setComputerHand({rock: false, paper: true, scissor: false});
       console.log("paper thing: ", Math.exp(rating.rockRating) + Math.exp(rating.paperRating));
       console.log("computer PAPER");
@@ -136,14 +129,19 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     let playerWin = 'Player WON';
     let computerWin = 'Computer WON';
     let tie = 'TIE';
-    if(rounds.roundsPlayed === rounds.totalRounds){
+    console.log("rounds: ", rounds.roundsPlayed, " / ", rounds.totalRounds);
+    if(rounds.roundsPlayed == rounds.totalRounds){
       if(score.playerScore > score.computerScore){
+        console.log("player win");
         setWinner(playerWin);
       }
       else if(score.computerScore > score.playerScore){
         setWinner(computerWin);
+        console.log("computer win")
       }else{
         setWinner(tie);
+        console.log("it's a tie");
+
       }
     }
   }
