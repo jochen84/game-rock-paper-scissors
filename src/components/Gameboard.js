@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Player from './Player';
 import Computer from './Computer';
 import Scoreboard from './Scoreboard';
@@ -13,18 +13,24 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     setRounds({...rounds, totalRounds: e.target.innerText});
   }
 
-  //***Varje gång spelaren väljer hand får datorn en random hand - Thats AI!***
+  const firstRun = useRef(true);
   useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false;
+      return;
+    } else {
+      computerAIhand();
+      winnerMoves();
+      whosTheWinner();
+    }
     //Ge datorn ett "drag"
-    computerAIhand();
     //Kör igång en if-sats för att kolla dragen
-    winnerMoves();
+    //winnerMoves();
     //Sätter vinnar namnet i <h1>-taggen - Får det inte till att funka
-    whosTheWinner();
   }, [handMove.player, rounds.roundsPlayed]);
   
   useEffect(() => {
-
+    
     //computerAIhand();
     setIsLoaded(true);
   }, []);
