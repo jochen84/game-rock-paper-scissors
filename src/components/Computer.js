@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-const Computer = ({handMove, setHandMove}) => {
+const Computer = ({handMove}) => {
 
   console.log("DENNA LIGGER I BOTTEN PÅ ***COMPUTER.JS***")
   return(

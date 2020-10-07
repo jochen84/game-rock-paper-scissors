@@ -21,8 +21,8 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       return;
     } else {
       computerAIhand();
-      whosTheWinner();
       winnerMoves();
+      whosTheWinner();
     }
   }, [handMove.player, rounds.roundsPlayed]);
   
@@ -39,95 +39,58 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     if(random == 0){
       console.log('Computer ROCK');
       setComputerHand({rock: true, paper: false, scissor: false});
-      setHandMove({...handMove, computer: 'rock'});
+      //setHandMove({...handMove, computer: 'rock'});
     }
     if(random == 1){
       console.log('Computer  PAPER');
       setComputerHand({rock: false, paper: true, scissor: false});
-      setHandMove({...handMove, computer: 'paper'});
+      //setHandMove({...handMove, computer: 'paper'});
     }
     if(random == 2){
       console.log('Computer SCISSOR');
       setComputerHand({rock: false, paper: false, scissor: true});
-      setHandMove({...handMove, computer: 'scissors'});
+      //setHandMove({...handMove, computer: 'scissors'});
     }
     //setHandMove({...handMove, computer: moves[random]});
 
-   /*
-   if (isLoaded) {
-
-    // Rating *= 0.95;
-    setRating({...rating,
-      rockRating: rating.rockRating * 0.95,
-      paperRating: rating.paperRating * 0.95,
-      scissorsRating: rating.scissorsRating * 0.95
-    });
-    //console.log("Ratings: ", rockRating + ", ", paperRating + ", ", scissorsRating);
-
-    let randomNumber = Math.random() * (Math.exp(rating.rockRating) + 
-    Math.exp(rating.scissorsRating) + Math.exp(rating.paperRating));
-
-
-    if (randomNumber < Math.exp(rating.rockRating)) {
-      setComputerHand({rock: true, paper: false, scissor: false});
-      console.log("math.exp(rock): ", Math.exp(rating.rockRating));
-      console.log("computer ROCK");
-      setHandMove({...handMove, computer: 'rock'});
-      return;
-    }
-    else if (randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating)) {
-      setComputerHand({rock: false, paper: true, scissor: false});
-      console.log("paper thing: ", Math.exp(rating.rockRating) + Math.exp(rating.paperRating));
-      console.log("computer PAPER");
-      setHandMove({...handMove, computer: 'paper'});
-      return;
-    } 
-    else if (!(randomNumber < Math.exp(rating.rockRating)) &&
-          !(randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating))){
-      setComputerHand({rock: false, paper: false, scissor: true});
-      setHandMove({...handMove, computer: 'scissors'});
-      console.log("computer SCISSORS");
-    } 
-  }
-  */
  console.log("DENNA LIGGER INNUTI ***COMPUTERAIHAND()***")
 }
 
   const winnerMoves = () => {
     if(JSON.stringify(playerHand) === JSON.stringify(computerHand)) {
       setScore({...score, tie: score.tie + 1});
-      console.log("resultat 1");
+      console.log("resultat 1 - fick lika händer");
     }
     else if(playerHand.rock && computerHand.scissor){
       setScore({...score, playerScore: score.playerScore + 1})
-      console.log("resultat 2");
+      console.log("resultat 2 - pROCK vs cSCISSOR");
     }
     else if(computerHand.rock && playerHand.scissor){
       setScore({...score, computerScore: score.computerScore + 1})
-      console.log("resultat 3");
+      console.log("resultat 3 - cROCK vs pSCISSOR");
     }
     else if(playerHand.scissor && computerHand.paper){
       setScore({...score, playerScore: score.playerScore + 1})
-      console.log("resultat 4");
+      console.log("resultat 4 - pSCISSOR vs cPAPER");
     }
     else if(computerHand.scissor && playerHand.paper){
       setScore({...score, computerScore: score.computerScore + 1})
-      console.log("resultat 5");
+      console.log("resultat 5 - cSCISSOR vs pPAPER");
     }
     else if(playerHand.paper && computerHand.rock){
       setScore({...score, playerScore: score.playerScore + 1})
-      console.log("resultat 6");
+      console.log("resultat 6 - pPAPER vs cROCK");
     }
     else if(computerHand.paper && playerHand.rock){
       setScore({...score, computerScore: score.computerScore + 1})
-      console.log("resultat 7");
+      console.log("resultat 7 - cPAPER vs pROCK");
     }
   }
 
   const whosTheWinner = () => {
-    let playerWin = 'Player WON';
-    let computerWin = 'Computer WON';
-    let tie = 'TIE';
+    let playerWin = '<-Player WON';
+    let computerWin = 'Computer WON->';
+    let tie = '<-TIE->';
     console.log("rounds: ", rounds.roundsPlayed, " / ", rounds.totalRounds);
     if(rounds.roundsPlayed == rounds.totalRounds){
       if(score.playerScore > score.computerScore){
@@ -166,7 +129,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       {/*Ta fram DIV när man tryckt på start */}
       <div className={`player-section-header ${hidden ? "" : "hidden"}`}>
         <h1>{winner}</h1>
-        <h1>Rounds {rounds.roundsPlayed}/{rounds.totalRounds}</h1>
+        <h1>Rounds {rounds.roundsPlayed}/{(rounds.totalRounds == 0 ? '***' : rounds.totalRounds)}</h1>
       </div>
       <div className="players-section">
         <Player hidden={hidden} rounds={rounds} setRounds={setRounds} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating}/>
