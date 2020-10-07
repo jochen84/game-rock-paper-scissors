@@ -24,12 +24,8 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       winnerMoves();
       whosTheWinner();
     }
-  }, [handMove.player, rounds.roundsPlayed]);
+  }, [rounds.roundsPlayed]);
   
-  useEffect(() => {
-    //computerAIhand();
-    setIsLoaded(true);
-  }, []);
   
   const computerAIhand = () => {
     
@@ -132,7 +128,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
         <h1>Rounds {rounds.roundsPlayed}/{(rounds.totalRounds == 0 ? '***' : rounds.totalRounds)}</h1>
       </div>
       <div className="players-section">
-        <Player hidden={hidden} rounds={rounds} setRounds={setRounds} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating}/>
+        <Player hidden={hidden} rounds={rounds} setRounds={setRounds} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating} computerHand={computerHand}/>
         <Scoreboard score={score} />
         <Computer handMove={handMove} setHandMove={setHandMove}/>
       </div>
