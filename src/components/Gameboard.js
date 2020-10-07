@@ -13,6 +13,10 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     setRounds({...rounds, totalRounds: e.target.innerText});
   }
 
+  useEffect(() => {
+    whosTheWinner();
+  }, [score]);
+
   const firstRun = useRef(true);
   useEffect(() => {
     if (firstRun.current) {
@@ -22,32 +26,28 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     } else {
       computerAIhand();
       winnerMoves();
-      whosTheWinner();
+      //whosTheWinner();
     }
-  }, [rounds.roundsPlayed]);
+  }, [rounds.roundsPlayed]); //handMove.player
   
+
+
   
   const computerAIhand = () => {
     
     let random = Math.floor(Math.random() * 3);
-    //let moves = ['rock', 'paper', 'scissors'];
-    console.log("RANDOM NUMBER INSIDE computerAIhand=" +random)
     if(random == 0){
       console.log('Computer ROCK');
       setComputerHand({rock: true, paper: false, scissor: false});
-      //setHandMove({...handMove, computer: 'rock'});
     }
     if(random == 1){
       console.log('Computer  PAPER');
       setComputerHand({rock: false, paper: true, scissor: false});
-      //setHandMove({...handMove, computer: 'paper'});
     }
     if(random == 2){
       console.log('Computer SCISSOR');
       setComputerHand({rock: false, paper: false, scissor: true});
-      //setHandMove({...handMove, computer: 'scissors'});
     }
-    //setHandMove({...handMove, computer: moves[random]});
 
  console.log("DENNA LIGGER INNUTI ***COMPUTERAIHAND()***")
 }
@@ -81,6 +81,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       setScore({...score, computerScore: score.computerScore + 1})
       console.log("resultat 7 - cPAPER vs pROCK");
     }
+    console.log("DENNA LIGGER INNUTI ***WINNERMOVES()***")
   }
 
   const whosTheWinner = () => {
@@ -101,6 +102,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
         console.log("it's a tie");
       }
     }
+    console.log("DENNA LIGGER INNUTI ***WHOSTHEWINNER()***")
   }
 
   console.log("DENNA LIGGER I BOTTEN PÅ ***GAMEBOARD.JS***")
@@ -124,7 +126,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       
       {/*Ta fram DIV när man tryckt på start */}
       <div className={`player-section-header ${hidden ? "" : "hidden"}`}>
-        <h1>{winner}</h1>
+        <h1>{(rounds.roundsPlayed == rounds.totalRounds ? winner : '')}</h1>
         <h1>Rounds {rounds.roundsPlayed}/{(rounds.totalRounds == 0 ? '***' : rounds.totalRounds)}</h1>
       </div>
       <div className="players-section">
