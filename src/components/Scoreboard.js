@@ -1,38 +1,50 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-const Scoreboard = ({score}) => {
+const Scoreboard = ({ score }) => {
 
-  const [roundWinner, setRoundWinner] = useState('')
+    const [roundWinner, setRoundWinner] = useState('')
 
-  useEffect(() => {
-    setRoundWinner('<--- Player got this');
-  }, [score.playerScore]);
-  useEffect(() => {
-    setRoundWinner('Computer got this --->');
-  }, [score.computerScore]);
-  useEffect(() => {
-    setRoundWinner('>-- TIE --<');
-  }, [score.tie]);
+    //Visa vem som vann senaste rundan
+    //Baserad på ändringar i score
+    //Körs ej första gången score renderas
+    const isFirst = useRef(true);
+    useEffect(() => {
+        if (isFirst.current) {
+            return;
+        } else {
+            setRoundWinner('<--- Player got this');
+        }
+    }, [score.playerScore]);
 
-  //Den kör alla 3 ovan vid start, lägger denna sist för att tömma "roundWinner" igen
-  //Men känns som det är helt fel att göra så.
-  useEffect(() => {
-    setRoundWinner('');
-  }, [])
+    useEffect(() => {
+        if (isFirst.current) {
+            return;
+        } else {
+            setRoundWinner('Computer got this --->');
+        }
+    }, [score.computerScore]);
 
-  console.log("DENNA LIGGER I BOTTEN PÅ ***SCOREBOARD.JS***")
-  return(
-    <div className="scoreboard">
-      <h1>{score.playerScore}</h1>
-      <p>Player</p>
-      <h1>{score.tie}</h1>
-      <p>Tie</p>
-      <h1>{score.computerScore}</h1>
-      <p>Computer</p>
-      <hr></hr>
-  <h2>{roundWinner}</h2>
-    </div>
-  )
+    useEffect(() => {
+        if (isFirst.current) {
+            isFirst.current = false;
+        } else {
+            setRoundWinner('>-- TIE --<');
+        }
+    }, [score.tie]);
+
+    console.log("DENNA LIGGER I BOTTEN PÅ ***SCOREBOARD.JS***")
+    return (
+        <div className="scoreboard">
+            <h1>{score.playerScore}</h1>
+            <p>Player</p>
+            <h1>{score.tie}</h1>
+            <p>Tie</p>
+            <h1>{score.computerScore}</h1>
+            <p>Computer</p>
+            <hr></hr>
+            <h2>{roundWinner}</h2>
+        </div>
+    )
 }
 
 export default Scoreboard;
