@@ -100,8 +100,8 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
         console.log("it's a tie");
       }
       if(rounds.roundsPlayed > 0){
-      console.log('Nån typ av reset här!')
-      setHidden(!hidden)
+        //Här får vi fixa omstarts tror jag...reset osv..
+        setHidden(!hidden)
       }
     }
     console.log("DENNA LIGGER INNUTI ***WHOSTHEWINNER()***")
