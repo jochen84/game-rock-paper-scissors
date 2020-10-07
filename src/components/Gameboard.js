@@ -13,10 +13,6 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     setRounds({...rounds, totalRounds: e.target.innerText});
   }
 
-  useEffect(() => {
-    whosTheWinner();
-  }, [score]);
-
   const firstRun = useRef(true);
   useEffect(() => {
     if (firstRun.current) {
@@ -30,7 +26,9 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     }
   }, [rounds.roundsPlayed]); //handMove.player
   
-
+  useEffect(() => {
+    whosTheWinner();
+  }, [score]);
 
   
   const computerAIhand = () => {
@@ -101,6 +99,10 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
         setWinner(tie);
         console.log("it's a tie");
       }
+      if(rounds.roundsPlayed > 0){
+      console.log('Nån typ av reset här!')
+      setHidden(!hidden)
+      }
     }
     console.log("DENNA LIGGER INNUTI ***WHOSTHEWINNER()***")
   }
@@ -125,8 +127,8 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       <hr></hr>
       
       {/*Ta fram DIV när man tryckt på start */}
+      <h1>{(rounds.roundsPlayed > 0 && rounds.roundsPlayed == rounds.totalRounds  ? winner : '')}</h1>
       <div className={`player-section-header ${hidden ? "" : "hidden"}`}>
-        <h1>{(rounds.roundsPlayed == rounds.totalRounds ? winner : '')}</h1>
         <h1>Rounds {rounds.roundsPlayed}/{(rounds.totalRounds == 0 ? '***' : rounds.totalRounds)}</h1>
       </div>
       <div className="players-section">
