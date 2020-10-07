@@ -16,34 +16,44 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
   const firstRun = useRef(true);
   useEffect(() => {
     if (firstRun.current) {
+      computerAIhand();
       firstRun.current = false;
       return;
     } else {
       computerAIhand();
-      winnerMoves();
       whosTheWinner();
+      winnerMoves();
     }
   }, [handMove.player, rounds.roundsPlayed]);
   
   useEffect(() => {
-    
     //computerAIhand();
     setIsLoaded(true);
   }, []);
-
-
-
-
+  
   const computerAIhand = () => {
-    /*
+    
     let random = Math.floor(Math.random() * 3);
-    let moves = ['rock', 'paper', 'scissors'];
-    if(random == 0){setComputerHand({rock: true, paper: false, scissor: false});}
-    if(random == 1){setComputerHand({rock: false, paper: true, scissor: false});}
-    if(random == 2){setComputerHand({rock: false, paper: false, scissor: true});}
-    setHandMove({...handMove, computer: moves[random]});
-    */
-   //let moves = ['rock', 'paper', 'scissors'];
+    //let moves = ['rock', 'paper', 'scissors'];
+    console.log("RANDOM NUMBER INSIDE computerAIhand=" +random)
+    if(random == 0){
+      console.log('Computer ROCK');
+      setComputerHand({rock: true, paper: false, scissor: false});
+      setHandMove({...handMove, computer: 'rock'});
+    }
+    if(random == 1){
+      console.log('Computer  PAPER');
+      setComputerHand({rock: false, paper: true, scissor: false});
+      setHandMove({...handMove, computer: 'paper'});
+    }
+    if(random == 2){
+      console.log('Computer SCISSOR');
+      setComputerHand({rock: false, paper: false, scissor: true});
+      setHandMove({...handMove, computer: 'scissors'});
+    }
+    //setHandMove({...handMove, computer: moves[random]});
+
+   /*
    if (isLoaded) {
 
     // Rating *= 0.95;
@@ -64,67 +74,56 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       console.log("computer ROCK");
       setHandMove({...handMove, computer: 'rock'});
       return;
-  }
-  else if (randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating)) {
+    }
+    else if (randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating)) {
       setComputerHand({rock: false, paper: true, scissor: false});
       console.log("paper thing: ", Math.exp(rating.rockRating) + Math.exp(rating.paperRating));
       console.log("computer PAPER");
       setHandMove({...handMove, computer: 'paper'});
       return;
-  } 
-  else if (!(randomNumber < Math.exp(rating.rockRating)) &&
+    } 
+    else if (!(randomNumber < Math.exp(rating.rockRating)) &&
           !(randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating))){
       setComputerHand({rock: false, paper: false, scissor: true});
       setHandMove({...handMove, computer: 'scissors'});
       console.log("computer SCISSORS");
-  } 
-  } 
+    } 
+  }
+  */
+ console.log("DENNA LIGGER INNUTI ***COMPUTERAIHAND()***")
 }
 
-  //***Varje gång spelaren väljer hand får datorn en random hand - Thats AI!***
-
-  //Jämför händerna, måste ändras för att få in poängsättning i samma...(Tie funkar men inte de andra)
   const winnerMoves = () => {
     if(JSON.stringify(playerHand) === JSON.stringify(computerHand)) {
       setScore({...score, tie: score.tie + 1});
       console.log("resultat 1");
-      //alert('Hello, we are the same! No one won');
     }
     else if(playerHand.rock && computerHand.scissor){
       setScore({...score, playerScore: score.playerScore + 1})
       console.log("resultat 2");
-      //alert('Player - Rock beats scissor')
     }
     else if(computerHand.rock && playerHand.scissor){
       setScore({...score, computerScore: score.computerScore + 1})
       console.log("resultat 3");
-      //alert('Computer - Rock beats scissor')
     }
     else if(playerHand.scissor && computerHand.paper){
       setScore({...score, playerScore: score.playerScore + 1})
       console.log("resultat 4");
-      //alert('Player - Scissor beats paper')
     }
     else if(computerHand.scissor && playerHand.paper){
       setScore({...score, computerScore: score.computerScore + 1})
       console.log("resultat 5");
-      //alert('Computer - Scissor beats paper')
     }
     else if(playerHand.paper && computerHand.rock){
       setScore({...score, playerScore: score.playerScore + 1})
       console.log("resultat 6");
-      //alert('Player - Paper beats rock')
     }
     else if(computerHand.paper && playerHand.rock){
       setScore({...score, computerScore: score.computerScore + 1})
       console.log("resultat 7");
-      //alert('Computer - Paper beats rock')
     }
-    //Tömmer spelarhanden för en ny omgång!
-    //setPlayerHand({rock: false, paper: false, scissor: false});
   }
-  
-  //Fungerar inte, den ändrar inte STATE, sätter bara 1 gång vid uppstart, körs i useEffect[handmove.player]
+
   const whosTheWinner = () => {
     let playerWin = 'Player WON';
     let computerWin = 'Computer WON';
@@ -141,10 +140,11 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       }else{
         setWinner(tie);
         console.log("it's a tie");
-
       }
     }
   }
+
+  console.log("DENNA LIGGER I BOTTEN PÅ ***GAMEBOARD.JS***")
 
   return(
     <div className="gameboard-header">
@@ -171,7 +171,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       <div className="players-section">
         <Player hidden={hidden} rounds={rounds} setRounds={setRounds} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating}/>
         <Scoreboard score={score} />
-        <Computer handMove={handMove}/>
+        <Computer handMove={handMove} setHandMove={setHandMove}/>
       </div>
     </div>
   )

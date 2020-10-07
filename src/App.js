@@ -46,10 +46,7 @@ function App() {
     scissorsRating: 0
   });
 
-  useEffect(() => {
-    //Vad körs igång när spelet startas!
-  })
-
+  console.log("DENNA LIGGER I BOTTEN PÅ ***APP.JS***")
   return (
     <div className="App">
       <Gameboard winner={winner} setWinner={setWinner} rounds={rounds} setRounds={setRounds} score={score} setScore={setScore} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} computerHand={computerHand} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating}/>

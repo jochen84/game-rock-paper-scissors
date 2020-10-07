@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-const Computer = ({handMove}) => {
+const Computer = ({handMove, setHandMove}) => {
 
-
+  console.log("DENNA LIGGER I BOTTEN PÅ ***COMPUTER.JS***")
   return(
     <div>
       <div className="avatar">

@@ -11,9 +11,16 @@ const Scoreboard = ({score}) => {
     setRoundWinner('Computer got this --->');
   }, [score.computerScore]);
   useEffect(() => {
-    setRoundWinner('>-- TIE ---<');
+    setRoundWinner('>-- TIE --<');
   }, [score.tie]);
 
+  //Den kör alla 3 ovan vid start, lägger denna sist för att tömma "roundWinner" igen
+  //Men känns som det är helt fel att göra så.
+  useEffect(() => {
+    setRoundWinner('');
+  }, [])
+
+  console.log("DENNA LIGGER I BOTTEN PÅ ***SCOREBOARD.JS***")
   return(
     <div className="scoreboard">
       <h1>{score.playerScore}</h1>
