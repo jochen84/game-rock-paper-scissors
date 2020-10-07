@@ -32,25 +32,37 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
   
 
 
-  
+  //Beräkna och sätt datorns val
   const computerAIhand = () => {
-    
-    let random = Math.floor(Math.random() * 3);
-    if(random == 0){
-      console.log('Computer ROCK');
-      setComputerHand({rock: true, paper: false, scissor: false});
-    }
-    if(random == 1){
-      console.log('Computer  PAPER');
-      setComputerHand({rock: false, paper: true, scissor: false});
-    }
-    if(random == 2){
-      console.log('Computer SCISSOR');
-      setComputerHand({rock: false, paper: false, scissor: true});
-    }
 
- console.log("DENNA LIGGER INNUTI ***COMPUTERAIHAND()***")
-}
+    setRating({...rating,
+      rockRating: rating.rockRating * 0.95,
+      paperRating: rating.paperRating * 0.95,
+      scissorsRating: rating.scissorsRating * 0.95
+    });
+
+    let randomNumber = Math.random() * (Math.exp(rating.rockRating) + 
+    Math.exp(rating.scissorsRating) + Math.exp(rating.paperRating));
+
+
+    if (randomNumber < Math.exp(rating.rockRating)) {
+      setComputerHand({rock: true, paper: false, scissor: false});
+      console.log("math.exp(rock): ", Math.exp(rating.rockRating));
+      console.log("computer ROCK");
+      return;
+    }
+    else if (randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating)) {
+      setComputerHand({rock: false, paper: true, scissor: false});
+      console.log("paper thing: ", Math.exp(rating.rockRating) + Math.exp(rating.paperRating));
+      console.log("computer PAPER");
+      return;
+    } 
+    else if (!(randomNumber < Math.exp(rating.rockRating)) &&
+          !(randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating))){
+      setComputerHand({rock: false, paper: false, scissor: true});
+      console.log("computer SCISSORS");
+    } 
+  }
 
   const winnerMoves = () => {
     if(JSON.stringify(playerHand) === JSON.stringify(computerHand)) {
