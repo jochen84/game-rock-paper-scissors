@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 const Player = ({hidden, rounds, setRounds, handMove, setHandMove, playerHand, setPlayerHand, rating, setRating}) => {
 
+
   //const [hidden, setHidden] = useState(false);
   //Klicka hand sätter "den" till true
   const chooseRock = () => {
@@ -13,7 +14,7 @@ const Player = ({hidden, rounds, setRounds, handMove, setHandMove, playerHand, s
       paperRating: rating.paperRating + 0.1,
       scissorsRating: rating.scissorsRating - 0.1
     });
-    //console.log("ScissorRating: ", rating.scissorsRating);
+    console.log("Player ROCK");
   }
   const choosePaper = () => {
     //hideChoices();
@@ -24,6 +25,7 @@ const Player = ({hidden, rounds, setRounds, handMove, setHandMove, playerHand, s
       rockRating: rating.rockRating - 0.1,
       scissorsRating: rating.scissorsRating + 0.1
     });
+    console.log("Player PAPER");
   }
   const chooseScissor = () => {
     //hideChoices();
@@ -34,6 +36,7 @@ const Player = ({hidden, rounds, setRounds, handMove, setHandMove, playerHand, s
       paperRating: rating.paperRating - 0.1,
       rockRating: rating.rockRating + 0.1
     });
+    console.log("Player SCISSORS");
   }
 
   //Klicka hand väljer handen, visar datorns val, jämför och sätter sedan poäng. Kollar även om antal ronder är klart.

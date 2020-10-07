@@ -60,7 +60,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       setComputerHand({rock: true, paper: false, scissor: false});
       //computerHand = "R";
       console.log("math.exp(rock): ", Math.exp(rating.rockRating));
-      console.log("com: R");
+      console.log("computer ROCK");
       setHandMove({...handMove, computer: 'rock'});
       return;
   }
@@ -69,17 +69,15 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       //computerHand = "P";
       setComputerHand({rock: false, paper: true, scissor: false});
       console.log("paper thing: ", Math.exp(rating.rockRating) + Math.exp(rating.paperRating));
-      console.log("com: P");
+      console.log("computer PAPER");
       setHandMove({...handMove, computer: 'paper'});
       return;
   } 
   else if (!(randomNumber < Math.exp(rating.rockRating)) &&
           !(randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating))){
-      //setComputerMove("S"); 
-      //computerHand = "S";
       setComputerHand({rock: false, paper: false, scissor: true});
       setHandMove({...handMove, computer: 'scissors'});
-      console.log("com: S");
+      console.log("computer SCISSORS");
   } 
   } 
 }
@@ -89,31 +87,38 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
   //Jämför händerna, måste ändras för att få in poängsättning i samma...(Tie funkar men inte de andra)
   const winnerMoves = () => {
     if(JSON.stringify(playerHand) === JSON.stringify(computerHand)) {
-      setScore({...score, tie: score.tie + 1})
+      setScore({...score, tie: score.tie + 1});
+      console.log("resultat 1");
       //alert('Hello, we are the same! No one won');
     }
     else if(playerHand.rock && computerHand.scissor){
       setScore({...score, playerScore: score.playerScore + 1})
+      console.log("resultat 2");
       //alert('Player - Rock beats scissor')
     }
     else if(computerHand.rock && playerHand.scissor){
       setScore({...score, computerScore: score.computerScore + 1})
+      console.log("resultat 3");
       //alert('Computer - Rock beats scissor')
     }
     else if(playerHand.scissor && computerHand.paper){
       setScore({...score, playerScore: score.playerScore + 1})
+      console.log("resultat 4");
       //alert('Player - Scissor beats paper')
     }
     else if(computerHand.scissor && playerHand.paper){
       setScore({...score, computerScore: score.computerScore + 1})
+      console.log("resultat 5");
       //alert('Computer - Scissor beats paper')
     }
     else if(playerHand.paper && computerHand.rock){
       setScore({...score, playerScore: score.playerScore + 1})
+      console.log("resultat 6");
       //alert('Player - Paper beats rock')
     }
     else if(computerHand.paper && playerHand.rock){
       setScore({...score, computerScore: score.computerScore + 1})
+      console.log("resultat 7");
       //alert('Computer - Paper beats rock')
     }
     //Tömmer spelarhanden för en ny omgång!
@@ -160,7 +165,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
         <h1>Rounds {rounds.roundsPlayed}/{rounds.totalRounds}</h1>
       </div>
       <div className="players-section">
-        <Player hidden={hidden} rounds={rounds} setRounds={setRounds} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand}/>
+        <Player hidden={hidden} rounds={rounds} setRounds={setRounds} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating}/>
         <Scoreboard score={score} />
         <Computer handMove={handMove}/>
       </div>
