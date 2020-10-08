@@ -134,7 +134,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       <div className="players-section">
         <Player hidden={hidden} rounds={rounds} setRounds={setRounds} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating} computerHand={computerHand}/>
         <Scoreboard score={score} />
-        <Computer handMove={handMove} setHandMove={setHandMove}/>
+        <Computer hidden={hidden} handMove={handMove} score={score}/>
       </div>
     </div>
   )
