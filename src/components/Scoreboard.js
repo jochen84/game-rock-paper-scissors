@@ -16,11 +16,12 @@ const Scoreboard = ({score}) => {
 
   //Den kör alla 3 ovan vid start, lägger denna sist för att tömma "roundWinner" igen
   //Men känns som det är helt fel att göra så.
+  /*
   useEffect(() => {
     setRoundWinner('');
   }, [])
+  */
 
-  console.log("DENNA LIGGER I BOTTEN PÅ ***SCOREBOARD.JS***")
   return(
     <div className="scoreboard">
       <h1>{score.playerScore}</h1>
@@ -30,7 +31,7 @@ const Scoreboard = ({score}) => {
       <h1>{score.computerScore}</h1>
       <p>Computer</p>
       <hr></hr>
-  <h2>{roundWinner}</h2>
+  <h2>{(score.playerScore > 0 || score.computerScore > 0 || score.tie > 0 ? roundWinner : '')}</h2>
     </div>
   )
 }

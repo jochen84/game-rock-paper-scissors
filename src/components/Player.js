@@ -75,7 +75,6 @@ const Player = ({hidden, rounds, setRounds, handMove, setHandMove, playerHand, s
   }
   */
 
- console.log("DENNA LIGGER I BOTTEN PÅ ***PLAYER.JS***")
   return(
     <div>
       <div className="avatar">

@@ -6,7 +6,6 @@ import Scoreboard from './Scoreboard';
 const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handMove, setHandMove, playerHand, setPlayerHand, computerHand, setComputerHand, rating, setRating}) => {
   //Används för att dölja <element>
   const [hidden, setHidden] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   
   //Sätter antal rundor man vill spela till numret som finns i texten man klickar
   const setRoundsToPlay = (e) => {
@@ -14,12 +13,19 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
   }
 
   const firstRun = useRef(true);
+  let firstaRundan = useRef(true);
   useEffect(() => {
+    /*
     if (firstRun.current) {
       computerAIhand();
       firstRun.current = false;
       return;
-    } else {
+    }*/
+    if (firstaRundan.current) {
+      computerAIhand();
+      firstaRundan.current = false;
+      return;
+    }else {
       computerAIhand();
       winnerMoves();
       //whosTheWinner();
@@ -29,7 +35,6 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
   useEffect(() => {
     whosTheWinner();
   }, [score]);
-
   
   const computerAIhand = () => {
     
@@ -46,8 +51,6 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       console.log('Computer SCISSOR');
       setComputerHand({rock: false, paper: false, scissor: true});
     }
-
- console.log("DENNA LIGGER INNUTI ***COMPUTERAIHAND()***")
 }
 
   const winnerMoves = () => {
@@ -79,7 +82,6 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       setScore({...score, computerScore: score.computerScore + 1})
       console.log("resultat 7 - cPAPER vs pROCK");
     }
-    console.log("DENNA LIGGER INNUTI ***WINNERMOVES()***")
   }
 
   const whosTheWinner = () => {
@@ -104,10 +106,11 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
         setHidden(!hidden)
       }
     }
-    console.log("DENNA LIGGER INNUTI ***WHOSTHEWINNER()***")
   }
 
-  console.log("DENNA LIGGER I BOTTEN PÅ ***GAMEBOARD.JS***")
+  const resetGame = () => {
+    document.location.reload();
+  }
 
   return(
     <div className="gameboard-header">
@@ -124,6 +127,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
         <br></br>
         <button onClick={() => setHidden(!hidden)} className="start-game">Choose rounds then START GAME</button>
       </div>
+      <button onClick={resetGame}>Refresh Page</button>
       <hr></hr>
       
       {/*Ta fram DIV när man tryckt på start */}
