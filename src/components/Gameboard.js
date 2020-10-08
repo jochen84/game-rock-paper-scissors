@@ -135,25 +135,6 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
                     <button onClick={setRoundsToPlay}>5</button>
                     <button onClick={setRoundsToPlay}>10</button>
                 </div>
-                <br></br>
-                <button onClick={() => setHidden(!hidden)} className="start-game">Choose rounds then START GAME</button>
-            </div>
-            <hr></hr>
-
-            {/*Ta fram DIV när man tryckt på start */}
-            <h1>{(rounds.roundsPlayed > 0 && rounds.roundsPlayed == rounds.totalRounds ? winner : '')}</h1>
-            <div className={`player-section-header ${hidden ? "" : "hidden"}`}>
-                <h1>Rounds {rounds.roundsPlayed}/{(rounds.totalRounds == 0 ? '***' : rounds.totalRounds)}</h1>
-            </div>
-            <div className="players-section">
-                <Player hidden={hidden} rounds={rounds} setRounds={setRounds} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating} computerHand={computerHand} />
-                <Scoreboard score={score} />
-                <Computer handMove={handMove} setHandMove={setHandMove} />
-            </div>
-        </div>
-<<<<<<< HEAD
-    )
-=======
         <br></br>
         <button onClick={() => setHidden(!hidden)} className="start-game">Choose rounds then START GAME</button>
       </div>
@@ -171,7 +152,6 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
       </div>
     </div>
   )
->>>>>>> new-branch-not-to-mess-up
 }
 
 export default Gameboard;
