@@ -48,7 +48,7 @@ const Computer = ({ handMove, score, hidden }) => {
             </div>
             {/*Visa DIV när man tryckt på Start - Dölj när rundor är spelade*/}
             <div className={`computer-taunt ${hidden ? "" : "hidden"}`}>
-                <h1>{taunt}</h1>
+                <h2>{taunt}</h2>
             </div>
         </div>
     )

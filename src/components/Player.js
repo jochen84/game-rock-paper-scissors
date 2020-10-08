@@ -74,13 +74,13 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             {/*Visa DIV när man tryckt på Start - Dölj när rundor är spelade*/}
             <div className={`player-choices ${hidden ? "" : "hidden"}`}>
                 <div className="player-choice">
-                    <img onClick={chooseRock} src="/media/rock.png" alt="rock" width="50" height="50"></img>
+                    <img onClick={chooseRock} src="/media/rock.png" alt="rock" width="55" height="55"></img>
                 </div>
                 <div className="player-choice">
-                    <img onClick={choosePaper} src="/media/paper.png" alt="paper" width="50" height="50"></img>
+                    <img onClick={choosePaper} src="/media/paper.png" alt="paper" width="55" height="55"></img>
                 </div>
                 <div className="player-choice">
-                    <img onClick={chooseScissor} src="/media/scissors.png" alt="scissors" width="50" height="50"></img>
+                    <img onClick={chooseScissor} src="/media/scissors.png" alt="scissors" width="55" height="55"></img>
                 </div>
             </div>
         </div>

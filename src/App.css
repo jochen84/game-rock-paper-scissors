@@ -1,19 +1,26 @@
-.App {
-  text-align: center;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+*{
+  padding: 0;
+  /* margin: 0; */
 }
 
-.gameboard-header{}
-.players-section-header{}
+.App {
+  margin: 30px;
+  padding: 10px 55px 10px 55px;
+  text-align: center;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  border: 5px solid black;
+  border-radius: 15px;
+  background-image: linear-gradient(to bottom right, rgb(88, 88, 88), lightgrey);
+}
 
-.start-game{
-  padding: 15px;
+.gameboard-header h1{
+  margin: 15px;
 }
 
 .gameboard-header button{
   font-family: "Comic Sans MS", cursive, sans-serif;
   font-size: larger;
-  padding: 8px 25px 8px 25px;
+  padding: 6px 25px 6px 25px;
   transition-duration: 0.4s;
   background-color: white;
   color: black;
@@ -50,10 +57,10 @@
 }
 
 .choosen-hand-move{
-  width: 250px;
-  height: 300px;
+  width: 225px;
+  height: 275px;
   border: 2px solid black;
-  background-color: #eee;
+  background-color: rgb(233, 231, 231);
 }
 
 .hand-image{
@@ -61,7 +68,9 @@
 }
 
 .scoreboard{
-  margin-top: 100px;
+  width: 300px;
+  margin-top: 70px;
+  
 }
 
 .player-choice{
@@ -72,7 +81,7 @@
 
 .player-choices{
   text-align: center;
-  padding-top: 25px;
+  padding-top: 10px;
 }
 
 .player-choice:hover{
@@ -84,9 +93,13 @@
 }
 
 .rounds-amount{
-  /* width: 500px; */
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.computer-taunt{
+  padding-top: 10px;
+  font-size: small;
 }
 
 .hidden{
