@@ -1,65 +1,49 @@
+/* eslint-disable default-case */
 import React from 'react';
 
 const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHand, rating, setRating, computerHand }) => {
 
-    //Klicka hand sätter "den" till true
-    const chooseRock = () => {
-        setRounds({ ...rounds, roundsPlayed: rounds.roundsPlayed + 1 })
-        setPlayerHand({ rock: true, paper: false, scissor: false });
-        setRating({
-            ...rating,
-            paperRating: rating.paperRating + 0.1,
-            scissorsRating: rating.scissorsRating - 0.1
-        });
+
+
+    const handMoveClicked = (e) => {
+        let move = e.target.alt;
+        setRounds({ ...rounds, roundsPlayed: rounds.roundsPlayed + 1 });
+
+        switch (move) {
+            case "rock":
+                setPlayerHand({ rock: true, paper: false, scissor: false });
+                setRating({
+                    ...rating,
+                    paperRating: rating.paperRating + 0.1,
+                    scissorsRating: rating.scissorsRating - 0.1
+                });
+                break;
+            case "paper":
+                setPlayerHand({ rock: false, paper: true, scissor: false });
+                setRating({
+                    ...rating,
+                    rockRating: rating.rockRating - 0.1,
+                    scissorsRating: rating.scissorsRating + 0.1
+                });
+                break;
+            case "scissors":
+                setPlayerHand({ rock: false, paper: false, scissor: true });
+                setRating({
+                    ...rating,
+                    rockRating: rating.rockRating + 0.1,
+                    paperRating: rating.paperRating - 0.1
+                });
+                break;
+        }
 
         if (computerHand.rock) {
-            setHandMove({ player: 'rock', computer: 'rock' });
+            setHandMove({ player: move, computer: 'rock' });
         }
         if (computerHand.paper) {
-            setHandMove({ player: 'rock', computer: 'paper' });
+            setHandMove({ player: move, computer: 'paper' });
         }
         if (computerHand.scissor) {
-            setHandMove({ player: 'rock', computer: 'scissors' });
-        }
-    }
-
-    const choosePaper = () => {
-        setRounds({ ...rounds, roundsPlayed: rounds.roundsPlayed + 1 })
-        setPlayerHand({ rock: false, paper: true, scissor: false });
-        setRating({
-            ...rating,
-            rockRating: rating.rockRating - 0.1,
-            scissorsRating: rating.scissorsRating + 0.1
-        });
-
-        if (computerHand.rock) {
-            setHandMove({ player: 'paper', computer: 'rock' });
-        }
-        if (computerHand.paper) {
-            setHandMove({ player: 'paper', computer: 'paper' });
-        }
-        if (computerHand.scissor) {
-            setHandMove({ player: 'paper', computer: 'scissors' });
-        }
-    }
-
-    const chooseScissor = () => {
-        setRounds({ ...rounds, roundsPlayed: rounds.roundsPlayed + 1 })
-        setPlayerHand({ rock: false, paper: false, scissor: true });
-        setRating({
-            ...rating,
-            paperRating: rating.paperRating - 0.1,
-            rockRating: rating.rockRating + 0.1
-        });
-
-        if (computerHand.rock) {
-            setHandMove({ player: 'scissors', computer: 'rock' });
-        }
-        if (computerHand.paper) {
-            setHandMove({ player: 'scissors', computer: 'paper' });
-        }
-        if (computerHand.scissor) {
-            setHandMove({ player: 'scissors', computer: 'scissors' });
+            setHandMove({ player: move, computer: 'scissors' });
         }
     }
 
@@ -74,13 +58,13 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             {/*Visa DIV när man tryckt på Start - Dölj när rundor är spelade*/}
             <div className={`player-choices ${hidden ? "" : "hidden"}`}>
                 <div className="player-choice">
-                    <img onClick={chooseRock} src="/media/rock.png" alt="rock" width="55" height="55"></img>
+                    <img onClick={handMoveClicked} src="/media/rock.png" alt="rock" width="55" height="55"></img>
                 </div>
                 <div className="player-choice">
-                    <img onClick={choosePaper} src="/media/paper.png" alt="paper" width="55" height="55"></img>
+                    <img onClick={handMoveClicked} src="/media/paper.png" alt="paper" width="55" height="55"></img>
                 </div>
                 <div className="player-choice">
-                    <img onClick={chooseScissor} src="/media/scissors.png" alt="scissors" width="55" height="55"></img>
+                    <img onClick={handMoveClicked} src="/media/scissors.png" alt="scissors" width="55" height="55"></img>
                 </div>
             </div>
         </div>
