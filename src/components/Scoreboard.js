@@ -1,38 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Scoreboard = ({ score }) => {
+const Scoreboard = ({ score, isGameRunning }) => {
 
     const [roundWinner, setRoundWinner] = useState('')
 
-    //Visa vem som vann senaste rundan
-    //Baserad på ändringar i score
-    //Körs ej första gången score renderas
-    const isFirst = useRef(true);
     useEffect(() => {
-        if (isFirst.current) {
-            return;
-        } else {
-            setRoundWinner('<--- Player got this');
-        }
+        setRoundWinner('<--- Player got this');
     }, [score.playerScore]);
-
     useEffect(() => {
-        if (isFirst.current) {
-            return;
-        } else {
-            setRoundWinner('Computer got this --->');
-        }
+        setRoundWinner('Computer got this --->');
     }, [score.computerScore]);
-
     useEffect(() => {
-        if (isFirst.current) {
-            isFirst.current = false;
-        } else {
-            setRoundWinner('>-- TIE --<');
-        }
+        setRoundWinner('>-- TIE --<');
     }, [score.tie]);
 
-    console.log("DENNA LIGGER I BOTTEN PÅ ***SCOREBOARD.JS***")
     return (
         <div className="scoreboard">
             <h1>{score.playerScore}</h1>
@@ -42,7 +23,7 @@ const Scoreboard = ({ score }) => {
             <h1>{score.computerScore}</h1>
             <p>Computer</p>
             <hr></hr>
-            <h2>{roundWinner}</h2>
+            <h2>{(score.playerScore > 0 || score.computerScore > 0 || score.tie > 0 ? roundWinner : '')}</h2>
         </div>
     )
 }

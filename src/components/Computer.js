@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Computer = ({ handMove, score, hidden }) => {
+const Computer = ({ handMove, score, hidden, isGameRunning }) => {
 
     const [taunt, setTaunt] = useState('');
     useEffect(() => {
@@ -34,11 +34,13 @@ const Computer = ({ handMove, score, hidden }) => {
         }
     }, [score.computerScore])
     useEffect(() => {
-        console.log('TEST AV TIE');
-        setTaunt('Hmm....');
+        if (isGameRunning) {
+            console.log('TEST AV TIE');
+            setTaunt('Hmm....');
+        }
+
     }, [score.tie])
 
-    console.log("DENNA LIGGER I BOTTEN PÅ ***COMPUTER.JS***")
     return (
         <div>
             <div className="avatar">

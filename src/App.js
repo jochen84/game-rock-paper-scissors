@@ -58,7 +58,6 @@ function App() {
         "Nooo!"
     ]);
 
-    console.log("DENNA LIGGER I BOTTEN PÅ ***APP.JS***")
     return (
         <div className="App">
             <Gameboard winner={winner} setWinner={setWinner} 

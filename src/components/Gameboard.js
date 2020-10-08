@@ -6,29 +6,37 @@ import Scoreboard from './Scoreboard';
 const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, handMove, setHandMove, playerHand, setPlayerHand, computerHand, setComputerHand, rating, setRating }) => {
     //Används för att dölja <element>
     const [hidden, setHidden] = useState(false);
+    const [isGameRunning, setIsGameRunning] = useState(true);
 
     //Sätter antal rundor man vill spela till numret som finns i texten man klickar
     const setRoundsToPlay = (e) => {
         setRounds({ ...rounds, totalRounds: e.target.innerText });
     }
 
+    
     //Körs varje ny runda
     //Annorlunda förstakörning, då inga resultat ska visas
     const firstRun = useRef(true);
     useEffect(() => {
-        if (firstRun.current) {
-            computerAIHand();
-            firstRun.current = false;
-            return;
-        } else {
-            computerAIHand();
-            winnerMoves();
+        if (isGameRunning) {
+            if (firstRun.current) {
+                computerAIHand();
+                firstRun.current = false;
+                return;
+            } else {
+                computerAIHand();
+                winnerMoves();
+            }
         }
+
     }, [rounds.roundsPlayed]);
 
     //Kör endast när score ändras, visa vinnare
     useEffect(() => {
-        whosTheWinner();
+        if (isGameRunning) {
+            whosTheWinner();
+
+        }
     }, [score]);
 
     //Beräkna och sätt datorns val
@@ -93,7 +101,6 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
             setScore({ ...score, computerScore: score.computerScore + 1 })
             console.log("resultat 7 - cPAPER vs pROCK");
         }
-        console.log("DENNA LIGGER INNUTI ***WINNERMOVES()***")
     }
 
     //Bestäm vinnare, eller om det blev oavgjort
@@ -102,26 +109,46 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
         let computerWin = 'Computer WON->';
         let tie = '<-TIE->';
         
-        if (rounds.roundsPlayed == rounds.totalRounds) {
+        if (isGameRunning && rounds.roundsPlayed == rounds.totalRounds) {
             if (score.playerScore > score.computerScore) {
                 console.log("player win");
                 setWinner(playerWin);
             }
-            else if (score.computerScore > score.playerScore) {
+            else if (isGameRunning && score.computerScore > score.playerScore) {
                 setWinner(computerWin);
                 console.log("computer win")
             } else {
-                setWinner(tie);
-                console.log("it's a tie");
+                if (isGameRunning) {
+                    setWinner(tie);
+                    console.log("it's a tie");
+                }
+
             }
-            if (rounds.roundsPlayed > 0) {
-                console.log('Nån typ av reset här!')
-                setHidden(!hidden)
+            if (isGameRunning && rounds.roundsPlayed > 0) {
+                setIsGameRunning(false);
+                console.log('Nån typ av reset här!');
+                resetGame();
+                setHidden(!hidden);
+                //startGame();
             }
         }
-        console.log("DENNA LIGGER INNUTI ***WHOSTHEWINNER()***")    }
+    }
 
-    console.log("DENNA LIGGER I BOTTEN PÅ ***GAMEBOARD.JS***")
+    const resetGame = () => {
+        setScore({
+            playerScore: 0,
+            computerScore: 0,
+            tie: 0
+        });
+        setRounds({
+            roundsPlayed: 0,
+            totalRounds: 0
+        });
+    }
+
+    const startGame = () => {
+        setIsGameRunning(true);
+    }
 
     return (
         <div className="gameboard-header">
@@ -147,8 +174,8 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
       </div>
       <div className="players-section">
         <Player hidden={hidden} rounds={rounds} setRounds={setRounds} handMove={handMove} setHandMove={setHandMove} playerHand={playerHand} setPlayerHand={setPlayerHand} rating={rating} setRating={setRating} computerHand={computerHand}/>
-        <Scoreboard score={score} />
-        <Computer hidden={hidden} handMove={handMove} score={score}/>
+        <Scoreboard score={score} isGameRunning={isGameRunning}/>
+        <Computer hidden={hidden} handMove={handMove} score={score} isGameRunning={isGameRunning}/>
       </div>
     </div>
   )
