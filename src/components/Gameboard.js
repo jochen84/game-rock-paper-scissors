@@ -6,6 +6,7 @@ import Scoreboard from './Scoreboard';
 const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handMove, setHandMove, playerHand, setPlayerHand, computerHand, setComputerHand, rating, setRating}) => {
   //Används för att dölja <element>
   const [hidden, setHidden] = useState(false);
+  const [resetHidden, setResetHidden] = useState(true);
   
   //Sätter antal rundor man vill spela till numret som finns i texten man klickar
   const setRoundsToPlay = (e) => {
@@ -96,7 +97,8 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
       }
       if(rounds.roundsPlayed > 0){
         //Här får vi fixa omstarts tror jag...reset osv..
-        setHidden(!hidden)
+        setHidden(!hidden);
+        setResetHidden(false);
       }
     }
   }
@@ -109,7 +111,7 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
     <div className="gameboard-header">
       <h1>Welcome to Rock Scissors Paper</h1>
       {/*Dölj DIV när antal runder valts eller när man tryckt på start */}
-      <div className={hidden ? "hidden" : ""}>
+      <div className={hidden || !resetHidden ? "hidden" : ""}>
         <h3>How many rounds would you like to play?</h3>
         <div className="rounds-amount">
           <button onClick={setRoundsToPlay}>1</button>
@@ -120,11 +122,11 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
         <br></br>
         <button onClick={() => setHidden(!hidden)} className="start-game">Choose rounds then START GAME</button>
       </div>
-      <button onClick={resetGame}>Refresh Page</button>
+      <button className={`${resetHidden ? "hidden" : ""}`} onClick={resetGame}>Restart</button>
       <hr></hr>
       
       {/*Ta fram DIV när man tryckt på start */}
-      <h1>{(rounds.roundsPlayed > 0 && rounds.roundsPlayed == rounds.totalRounds  ? winner : '')}</h1>
+      <h1>{(rounds.roundsPlayed > 0 && rounds.roundsPlayed == rounds.totalRounds ? winner : '')}</h1>
       <div className={`player-section-header ${hidden ? "" : "hidden"}`}>
         <h1>Rounds {rounds.roundsPlayed}/{(rounds.totalRounds == 0 ? '***' : rounds.totalRounds)}</h1>
       </div>
