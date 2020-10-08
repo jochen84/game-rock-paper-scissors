@@ -34,6 +34,10 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
 
     //Beräkna och sätt datorns val
     const computerAIHand = () => {
+
+        // Calculations (AI) 'stolen' from author EbTech on http://www.rpscontest.com/entry/13015
+        // Currently at place 896 if 3119 in the leaderbord.
+
         setRating({
             ...rating,
             rockRating: rating.rockRating * 0.95,
@@ -43,6 +47,16 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
 
         let randomNumber = Math.random() * (Math.exp(rating.rockRating) +
             Math.exp(rating.scissorsRating) + Math.exp(rating.paperRating));
+
+            console.log("=============================");
+            console.log("rockRating: ", rating.rockRating);
+            console.log("paperRating: ", rating.paperRating);
+            console.log("scissorsRating: ", rating.scissorsRating);
+            console.log("-----------------------------");
+            console.log("randomNumber: ", randomNumber);
+            console.log("=============================");
+
+
 
         if (randomNumber < Math.exp(rating.rockRating)) {
             setComputerHand({ rock: true, paper: false, scissor: false });
@@ -54,7 +68,7 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
         }
         else if (!(randomNumber < Math.exp(rating.rockRating)) &&
             !(randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating))) {
-            setComputerHand({ rock: false, paper: false, scissor: true });
+                setComputerHand({ rock: false, paper: false, scissor: true });
         }
     }
 
@@ -120,7 +134,7 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
                     <button onClick={setRoundsToPlay}>1</button>
                     <button onClick={setRoundsToPlay}>3</button>
                     <button onClick={setRoundsToPlay}>5</button>
-                    <button onClick={setRoundsToPlay}>10</button>
+                    <button onClick={setRoundsToPlay}>50</button>
                 </div>
 
                 <br></br>
