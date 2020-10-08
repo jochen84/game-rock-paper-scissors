@@ -112,6 +112,7 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
     return (
         <div className="gameboard-header">
             <h1>Welcome to Rock Scissors Paper</h1>
+
             {/*Dölj DIV när antal runder valts eller när man tryckt på start */}
             <div className={hidden || !resetHidden ? "hidden" : ""}>
                 <h3>How many rounds would you like to play?</h3>
@@ -121,6 +122,7 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
                     <button onClick={setRoundsToPlay}>5</button>
                     <button onClick={setRoundsToPlay}>10</button>
                 </div>
+
                 <br></br>
                 <button onClick={() => setHidden(!hidden)} className="start-game">Choose rounds then START GAME</button>
             </div>
@@ -138,6 +140,7 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
             </div>
         </div>
     )
+
 }
 
 export default Gameboard;

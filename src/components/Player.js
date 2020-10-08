@@ -62,25 +62,25 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             setHandMove({ player: 'scissors', computer: 'scissors' });
         }
     }
-    
+
     return (
         <div>
             <div className="avatar">
                 <img src="/media/player.png" width="110px" alt="head"></img>
             </div>
             <div className="choosen-hand-move">
-                <img className="hand-image" alt="" src={`/media/${handMove.player}.png`} width="350"></img>
+                <img className="hand-image" alt="" src={`/media/${handMove.player}.png`} width="200"></img>
             </div>
-            {/*Ta fram DIV när man tryckt på Start*/}
+            {/*Visa DIV när man tryckt på Start - Dölj när rundor är spelade*/}
             <div className={`player-choices ${hidden ? "" : "hidden"}`}>
                 <div className="player-choice">
-                    <img onClick={chooseRock} src="/media/rock.png" alt="rock" width="75" height="75"></img>
+                    <img onClick={chooseRock} src="/media/rock.png" alt="rock" width="50" height="50"></img>
                 </div>
                 <div className="player-choice">
-                    <img onClick={choosePaper} src="/media/paper.png" alt="paper" width="75" height="75"></img>
+                    <img onClick={choosePaper} src="/media/paper.png" alt="paper" width="50" height="50"></img>
                 </div>
                 <div className="player-choice">
-                    <img onClick={chooseScissor} src="/media/scissors.png" alt="scissors" width="75" height="75"></img>
+                    <img onClick={chooseScissor} src="/media/scissors.png" alt="scissors" width="50" height="50"></img>
                 </div>
             </div>
         </div>
