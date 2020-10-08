@@ -13,17 +13,10 @@ const Gameboard = ({winner, setWinner, rounds, setRounds, score, setScore, handM
   }
 
   const firstRun = useRef(true);
-  let firstaRundan = useRef(true);
   useEffect(() => {
-    /*
     if (firstRun.current) {
       computerAIhand();
       firstRun.current = false;
-      return;
-    }*/
-    if (firstaRundan.current) {
-      computerAIhand();
-      firstaRundan.current = false;
       return;
     }else {
       computerAIhand();
