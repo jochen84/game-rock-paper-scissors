@@ -46,18 +46,6 @@ function App() {
         scissorsRating: 0
     });
 
-    const [winningTaunt, setWinningTaunt] = useState([
-        "Ha ha!",
-        "You'll never beat me!",
-        "Nice try!"
-    ]);
-
-    const [losingTaunt, setlosingTaunt] = useState([
-        "Pure luck!",
-        "You're cheating!",
-        "Nooo!"
-    ]);
-
     return (
         <div className="App">
             <Gameboard winner={winner} setWinner={setWinner} 
@@ -67,8 +55,7 @@ function App() {
             playerHand={playerHand} setPlayerHand={setPlayerHand}
             computerHand={computerHand} setComputerHand={setComputerHand} 
             rating={rating} setRating={setRating}
-            winningTaunt={winningTaunt} setWinningTaunt={setWinningTaunt}
-            losingTaunt={losingTaunt} setlosingTaunt={setlosingTaunt} />
+            />
         </div>
     );
 }

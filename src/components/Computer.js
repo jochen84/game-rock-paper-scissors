@@ -47,8 +47,9 @@ const Computer = ({ handMove, score, hidden, isGameRunning }) => {
                 <img src="/media/computer.png" width="110px" alt="comp"></img>
             </div>
             <div className="choosen-hand-move">
-                <img className="hand-image" alt="" src={`/media/${handMove.computer}.png`} width="350"></img>
+                <img className="hand-image" alt="" src={`/media/${handMove.computer}.png`} width="200"></img>
             </div>
+            {/*Visa DIV när man tryckt på Start - Dölj när rundor är spelade*/}
             <div className={`computer-taunt ${hidden ? "" : "hidden"}`}>
                 <h1>{taunt}</h1>
             </div>
