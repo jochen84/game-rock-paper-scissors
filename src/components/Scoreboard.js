@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Scoreboard = ({ score, isGameRunning }) => {
+const Scoreboard = ({ score }) => {
 
     const [roundWinner, setRoundWinner] = useState('')
 
     useEffect(() => {
         setRoundWinner('<--- Player got this');
     }, [score.playerScore]);
+
     useEffect(() => {
-        setRoundWinner('Computer got this --->');
+            setRoundWinner('Computer got this --->');
     }, [score.computerScore]);
+    
     useEffect(() => {
-        setRoundWinner('>-- TIE --<');
+            setRoundWinner('>-- TIE --<');
     }, [score.tie]);
 
     return (

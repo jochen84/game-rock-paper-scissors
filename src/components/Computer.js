@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-const Computer = ({ handMove, score, hidden, isGameRunning }) => {
+const Computer = ({ handMove, score, hidden }) => {
 
     const [taunt, setTaunt] = useState('');
+
     useEffect(() => {
-        console.log('TEST AV PLAYERSCORE');
         let random = Math.floor(Math.random() * 3);
         switch (random) {
             case 0:
@@ -17,9 +17,9 @@ const Computer = ({ handMove, score, hidden, isGameRunning }) => {
                 setTaunt('Nooo!');
                 break;
         }
-    }, [score.playerScore])
+    }, [score.playerScore]);
+
     useEffect(() => {
-        console.log('TEST AV COMPUTERSCORE');
         let random = Math.floor(Math.random() * 3);
         switch (random) {
             case 0:
@@ -32,14 +32,11 @@ const Computer = ({ handMove, score, hidden, isGameRunning }) => {
                 setTaunt('Nice try!');
                 break;
         }
-    }, [score.computerScore])
-    useEffect(() => {
-        if (isGameRunning) {
-            console.log('TEST AV TIE');
-            setTaunt('Hmm....');
-        }
+    }, [score.computerScore]);
 
-    }, [score.tie])
+    useEffect(() => {
+        setTaunt('Hmm....');
+    }, [score.tie]);
 
     return (
         <div>

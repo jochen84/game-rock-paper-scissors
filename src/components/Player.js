@@ -11,7 +11,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             paperRating: rating.paperRating + 0.1,
             scissorsRating: rating.scissorsRating - 0.1
         });
-        console.log("Player ROCK");
+
         if (computerHand.rock) {
             setHandMove({ player: 'rock', computer: 'rock' });
         }
@@ -22,6 +22,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             setHandMove({ player: 'rock', computer: 'scissors' });
         }
     }
+
     const choosePaper = () => {
         setRounds({ ...rounds, roundsPlayed: rounds.roundsPlayed + 1 })
         setPlayerHand({ rock: false, paper: true, scissor: false });
@@ -30,7 +31,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             rockRating: rating.rockRating - 0.1,
             scissorsRating: rating.scissorsRating + 0.1
         });
-        console.log("Player PAPER");
+
         if (computerHand.rock) {
             setHandMove({ player: 'paper', computer: 'rock' });
         }
@@ -41,6 +42,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             setHandMove({ player: 'paper', computer: 'scissors' });
         }
     }
+
     const chooseScissor = () => {
         setRounds({ ...rounds, roundsPlayed: rounds.roundsPlayed + 1 })
         setPlayerHand({ rock: false, paper: false, scissor: true });
@@ -49,7 +51,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             paperRating: rating.paperRating - 0.1,
             rockRating: rating.rockRating + 0.1
         });
-        console.log("Player SCISSORS");
+
         if (computerHand.rock) {
             setHandMove({ player: 'scissors', computer: 'rock' });
         }
@@ -60,17 +62,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             setHandMove({ player: 'scissors', computer: 'scissors' });
         }
     }
-
-    //Klicka hand väljer handen, visar datorns val, jämför och sätter sedan poäng. Kollar även om antal ronder är klart.
-
-    /* //Denna fungerade här men får den inte till att funka i Gameboard.js istället....
-    const hideChoices = () => {
-     if(rounds.roundsPlayed == rounds.totalRounds-1){
-        setHidden(true);
-      }
-    }
-    */
-
+    
     return (
         <div>
             <div className="avatar">
