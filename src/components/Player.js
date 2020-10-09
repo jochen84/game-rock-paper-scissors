@@ -20,8 +20,8 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             setPlayerHand({ rock: false, paper: true, scissors: false });
             setRating({
                 ...rating,
-                paperRating: rating.paperRating - 0.1,
-                rockRating: rating.rockRating + 0.1
+                paperRating: rating.rockRating - 0.1,
+                rockRating: rating.scissorsRating + 0.1
             });
         }
         if(playerMove == 'rock'){
