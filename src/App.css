@@ -7,7 +7,7 @@
   margin: 30px;
   padding: 10px 55px 10px 55px;
   text-align: center;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: 'Chilanka', cursive;
   border: 5px solid black;
   border-radius: 15px;
   background-image: linear-gradient(to bottom right, rgb(88, 88, 88), lightgrey);
@@ -18,9 +18,10 @@
 }
 
 .gameboard-header button{
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  font-size: larger;
-  padding: 6px 25px 6px 25px;
+  font-family: 'Chilanka', cursive;
+  font-size: x-large;
+  font-weight: 700;
+  padding: 10px 25px 4px 25px;
   transition-duration: 0.4s;
   background-color: white;
   color: black;
