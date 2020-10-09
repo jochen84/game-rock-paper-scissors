@@ -7,6 +7,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
         let computerMove = '';
         let playerMove = e.target.alt;
         setRounds({ ...rounds, roundsPlayed: rounds.roundsPlayed + 1 })
+
         if(playerMove == 'scissors'){
             setPlayerHand({ rock: false, paper: false, scissors: true });
             setRating({
@@ -31,7 +32,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
                 scissorsRating: rating.scissorsRating - 0.1
             });
         }
-
+        //Tar namnet på det värdet i objektet som är sant och tilldelar till computerMove
         for (const property in computerHand) {
             if(computerHand[property] === true){
                 computerMove = property;
