@@ -49,16 +49,16 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
             Math.exp(rating.scissorsRating) + Math.exp(rating.paperRating));
 
         if (randomNumber < Math.exp(rating.rockRating)) {
-            setComputerHand({ rock: true, paper: false, scissor: false });
+            setComputerHand({ rock: true, paper: false, scissors: false });
             return;
         }
         else if (randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating)) {
-            setComputerHand({ rock: false, paper: true, scissor: false });
+            setComputerHand({ rock: false, paper: true, scissors: false });
             return;
         }
         else if (!(randomNumber < Math.exp(rating.rockRating)) &&
             !(randomNumber < Math.exp(rating.rockRating) + Math.exp(rating.paperRating))) {
-                setComputerHand({ rock: false, paper: false, scissor: true });
+                setComputerHand({ rock: false, paper: false, scissors: true });
         }
     }
 
@@ -67,16 +67,16 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
         if (JSON.stringify(playerHand) === JSON.stringify(computerHand)) {
             setScore({ ...score, tie: score.tie + 1 });
         }
-        else if (playerHand.rock && computerHand.scissor) {
+        else if (playerHand.rock && computerHand.scissors) {
             setScore({ ...score, playerScore: score.playerScore + 1 })
         }
-        else if (computerHand.rock && playerHand.scissor) {
+        else if (computerHand.rock && playerHand.scissors) {
             setScore({ ...score, computerScore: score.computerScore + 1 })
         }
-        else if (playerHand.scissor && computerHand.paper) {
+        else if (playerHand.scissors && computerHand.paper) {
             setScore({ ...score, playerScore: score.playerScore + 1 })
         }
-        else if (computerHand.scissor && playerHand.paper) {
+        else if (computerHand.scissors && playerHand.paper) {
             setScore({ ...score, computerScore: score.computerScore + 1 })
         }
         else if (playerHand.paper && computerHand.rock) {

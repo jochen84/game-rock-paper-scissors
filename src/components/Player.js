@@ -8,7 +8,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
         let playerMove = e.target.alt;
         setRounds({ ...rounds, roundsPlayed: rounds.roundsPlayed + 1 })
         if(playerMove == 'scissors'){
-            setPlayerHand({ rock: false, paper: false, scissor: true });
+            setPlayerHand({ rock: false, paper: false, scissors: true });
             setRating({
                 ...rating,
                 paperRating: rating.paperRating - 0.1,
@@ -16,7 +16,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             });
         }
         if(playerMove == 'paper'){
-            setPlayerHand({ rock: false, paper: true, scissor: false });
+            setPlayerHand({ rock: false, paper: true, scissors: false });
             setRating({
                 ...rating,
                 paperRating: rating.paperRating - 0.1,
@@ -24,33 +24,20 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
             });
         }
         if(playerMove == 'rock'){
-            setPlayerHand({ rock: true, paper: false, scissor: false });
+            setPlayerHand({ rock: true, paper: false, scissors: false });
             setRating({
                 ...rating,
                 paperRating: rating.paperRating + 0.1,
                 scissorsRating: rating.scissorsRating - 0.1
             });
         }
-        /*
-        if (computerHand.rock) {
-            setHandMove({ player: playerMove, computer: 'rock' });
-        }
-        if (computerHand.paper) {
-            setHandMove({ player: playerMove, computer: 'paper' });
-        }
-        if (computerHand.scissor) {
-            setHandMove({ player: playerMove, computer: 'scissors' });
-        }
-        */
 
         for (const property in computerHand) {
             if(computerHand[property] === true){
                 computerMove = property;
-                console.log(property)
             }
         }
         setHandMove({ player: playerMove, computer: computerMove });
-
     }
 
     return (

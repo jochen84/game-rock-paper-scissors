@@ -29,14 +29,14 @@ function App() {
     const [playerHand, setPlayerHand] = useState({
         rock: false,
         paper: false,
-        scissor: false
+        scissors: false
     });
 
     //Datorns hand, beräknas fram i computerAIHand
     const [computerHand, setComputerHand] = useState({
         rock: false,
         paper: false,
-        scissor: false
+        scissors: false
     });
 
     //För beräkning av datorns drag
