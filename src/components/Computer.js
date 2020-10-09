@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React, { useEffect, useState } from 'react';
 
 const Computer = ({ handMove, score, hidden }) => {

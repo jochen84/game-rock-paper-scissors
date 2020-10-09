@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React from 'react';
 
 const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHand, rating, setRating, computerHand }) => {
@@ -29,6 +30,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
                 scissorsRating: rating.scissorsRating - 0.1
             });
         }
+
         if (computerHand.rock) {
             setHandMove({ player: move, computer: 'rock' });
         }
