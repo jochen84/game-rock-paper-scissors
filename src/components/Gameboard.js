@@ -48,16 +48,6 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
         let randomNumber = Math.random() * (Math.exp(rating.rockRating) +
             Math.exp(rating.scissorsRating) + Math.exp(rating.paperRating));
 
-            console.log("=============================");
-            console.log("rockRating: ", rating.rockRating);
-            console.log("paperRating: ", rating.paperRating);
-            console.log("scissorsRating: ", rating.scissorsRating);
-            console.log("-----------------------------");
-            console.log("randomNumber: ", randomNumber);
-            console.log("=============================");
-
-
-
         if (randomNumber < Math.exp(rating.rockRating)) {
             setComputerHand({ rock: true, paper: false, scissor: false });
             return;
@@ -134,7 +124,7 @@ const Gameboard = ({ winner, setWinner, rounds, setRounds, score, setScore, hand
                     <button onClick={setRoundsToPlay}>1</button>
                     <button onClick={setRoundsToPlay}>3</button>
                     <button onClick={setRoundsToPlay}>5</button>
-                    <button onClick={setRoundsToPlay}>50</button>
+                    <button onClick={setRoundsToPlay}>10</button>
                 </div>
 
                 <br></br>

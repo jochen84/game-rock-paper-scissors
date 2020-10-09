@@ -4,9 +4,10 @@ import React from 'react';
 const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHand, rating, setRating, computerHand }) => {
 
     const handMoveClicked = (e) => {
-        let move = e.target.alt;
+        let computerMove = '';
+        let playerMove = e.target.alt;
         setRounds({ ...rounds, roundsPlayed: rounds.roundsPlayed + 1 })
-        if(move == 'scissors'){
+        if(playerMove == 'scissors'){
             setPlayerHand({ rock: false, paper: false, scissor: true });
             setRating({
                 ...rating,
@@ -14,7 +15,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
                 rockRating: rating.rockRating + 0.1
             });
         }
-        if(move == 'paper'){
+        if(playerMove == 'paper'){
             setPlayerHand({ rock: false, paper: true, scissor: false });
             setRating({
                 ...rating,
@@ -22,7 +23,7 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
                 rockRating: rating.rockRating + 0.1
             });
         }
-        if(move == 'rock'){
+        if(playerMove == 'rock'){
             setPlayerHand({ rock: true, paper: false, scissor: false });
             setRating({
                 ...rating,
@@ -30,16 +31,26 @@ const Player = ({ hidden, rounds, setRounds, handMove, setHandMove, setPlayerHan
                 scissorsRating: rating.scissorsRating - 0.1
             });
         }
-
+        /*
         if (computerHand.rock) {
-            setHandMove({ player: move, computer: 'rock' });
+            setHandMove({ player: playerMove, computer: 'rock' });
         }
         if (computerHand.paper) {
-            setHandMove({ player: move, computer: 'paper' });
+            setHandMove({ player: playerMove, computer: 'paper' });
         }
         if (computerHand.scissor) {
-            setHandMove({ player: move, computer: 'scissors' });
+            setHandMove({ player: playerMove, computer: 'scissors' });
         }
+        */
+
+        for (const property in computerHand) {
+            if(computerHand[property] === true){
+                computerMove = property;
+                console.log(property)
+            }
+        }
+        setHandMove({ player: playerMove, computer: computerMove });
+
     }
 
     return (
